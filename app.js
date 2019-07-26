@@ -48,7 +48,7 @@ var options = {
     headers: {
         'Authorization': 'bini1 e654695bbba044c72bab4c0d7332ef81-us3'
     },
-    body: jsonData
+    // body: jsonData
 
 };
 
@@ -65,7 +65,6 @@ request(options, function(error, response, body){
 
 });
 
-
 });
 
 app.post('/failure', function(req, res){
@@ -74,7 +73,7 @@ app.post('/failure', function(req, res){
 
 
 // my port
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 3000, function() {
     console.log('The server is running on heroku & port 3000.')
 });
 

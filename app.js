@@ -29,9 +29,10 @@ app.post('/', function(req, res){
 
  var data = {
      members:[
-         {email_address: email,
-         status: 'subscribed', 
-         merge_fields:{
+         {
+            email_address: email,
+            status: 'subscribed', 
+            merge_fields: {
              FNAME: firstName,
              LNAME: lastName
          }
@@ -44,21 +45,22 @@ app.post('/', function(req, res){
 var options = {
     url: 'https://us3.api.mailchimp.com/3.0/lists/a2fb52c34f', 
     method: 'POST',
-    headers:{
-        'authorization' : 'bini1 e654695bbba044c72bab4c0d7332ef81-us3'
+    headers: {
+        'Authorization': 'bini1 e654695bbba044c72bab4c0d7332ef81-us3'
     },
     body: jsonData
 
-} 
+};
+
 request(options, function(error, response, body){
-    if(error){
-        res.send('opps there was an error. Please try again.');
-    } else if( response.statusCode === 200){
-        res.send('succesfully subscribed');
+    if(error) {
+        res.sendFile(__dirname + '/failure.html');
+    } else {
+        if(response.statusCode === 200) {
+            res.sendFile(__dirname + '/success.html');
+    } else {
+        res.sendFile(__dirname + '/failure.html');    
     }
-     else {
-        res.send('opps there was an error. Please try again.');
-    
 }
 
 });
@@ -66,7 +68,9 @@ request(options, function(error, response, body){
 
 });
 
-
+app.post('/failure', function(req, res){
+    res.redirect('/');
+});
 
 
 // my port
@@ -74,5 +78,3 @@ app.listen(3000, function(){
     console.log('The server is on port 3000.')
 });
 
-//API Key: e654695bbba044c72bab4c0d7332ef81-us3
-//ID a2fb52c34f

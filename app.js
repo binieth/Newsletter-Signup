@@ -48,7 +48,7 @@ var options = {
     headers: {
         'Authorization': 'bini1 e654695bbba044c72bab4c0d7332ef81-us3'
     },
-    body: jsonData
+    // body: jsonData
 
 };
 
